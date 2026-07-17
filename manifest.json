@@ -1,0 +1,16 @@
+{
+  "name": "Japão 2026",
+  "short_name": "Japão 2026",
+  "description": "Roteiro e organização da viagem ao Japão — setembro de 2026",
+  "start_url": "./index.html#/home",
+  "display": "standalone",
+  "background_color": "#fafaf9",
+  "theme_color": "#fafaf9",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23fafaf9'/%3E%3Ccircle cx='50' cy='50' r='26' fill='%23c2402a'/%3E%3C/svg%3E",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
