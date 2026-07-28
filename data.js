@@ -111,7 +111,109 @@ window.SEED_DATA = {
     // ——— Fora de Tóquio / a confirmar ———
     { id: "lg-jindaiji", nome: "Jindaiji (templo + soba)", cidade: "toquio", bairro: "Chofu (afastado)", categoria: "templos", prioridade: "baixa", status: "talvez", notas: "2º templo mais antigo de Tóquio, área verde, restaurantes de soba. Meio dia de passeio — avaliar se cabe." },
     { id: "lg-takayama", nome: "Takayama", cidade: "outra", bairro: "Gifu", categoria: "fora", prioridade: "baixa", status: "talvez", notas: "[cidade a confirmar] Takayama fica nos Alpes Japoneses (~4h30 de Tóquio) — não é bate-volta viável. Manter só se valer pernoite." },
-    { id: "lg-nishiki", nome: "Nishiki Market", cidade: "kyoto", bairro: "centro de Kyoto", categoria: "mercados", prioridade: "alta", status: "quero", notas: "Estava na lista de Tóquio, mas o Nishiki Market fica em Kyoto — movido. Encaixa nos dias 10–12/09." }
+    { id: "lg-nishiki", nome: "Nishiki Market", cidade: "kyoto", bairro: "centro de Kyoto", categoria: "mercados", prioridade: "alta", status: "quero", notas: "Estava na lista de Tóquio, mas o Nishiki Market fica em Kyoto — movido. Encaixa nos dias 10–12/09." },
+
+    // ——— KYOTO — Templos, santuários e jardins ———
+    { id: "lg-tenryuji", nome: "Tenryū-ji", cidade: "kyoto", bairro: "Arashiyama", categoria: "templos", prioridade: "alta", status: "quero" },
+    { id: "lg-gioji", nome: "Gio-ji", cidade: "kyoto", bairro: "Arashiyama (Saga)", categoria: "templos", prioridade: "media", status: "quero", notas: "Nome corrigido de 'Giõji'." },
+    { id: "lg-otagi-nenbutsuji", nome: "Otagi Nenbutsu-ji", cidade: "kyoto", bairro: "Saga Toriimoto (Arashiyama)", categoria: "templos", prioridade: "alta", status: "quero", notas: "Apareceu 2x na sua lista — unificado. NÃO é o mesmo templo que o Adashino Nenbutsu-ji (abaixo), apesar do nome parecido — confirmei por pesquisa. Ficam na mesma rua, dá pra visitar os dois." },
+    { id: "lg-adashino-nenbutsuji", nome: "Adashino Nenbutsu-ji", cidade: "kyoto", bairro: "Saga Toriimoto (Arashiyama)", categoria: "templos", prioridade: "alta", status: "quero", notas: "Templo diferente do Otagi Nenbutsu-ji — este tem ~8.000 estátuas em memória aos mortos sem família; o Otagi tem 1.200 rakan de expressões variadas e mais artístico." },
+    { id: "lg-fushimi-inari", nome: "Fushimi Inari Taisha", cidade: "kyoto", bairro: "Fushimi", categoria: "templos", prioridade: "alta", status: "quero", melhorHorario: "manhã bem cedo, antes da multidão" },
+    { id: "lg-komyoin", nome: "Komyo-in", cidade: "kyoto", bairro: "Tofuku-ji (Higashiyama/Fushimi)", categoria: "templos", prioridade: "media", status: "quero", notas: "Sub-templo do complexo Tofuku-ji, jardim de pedras Hoshin-tei. Apareceu 2x — unificado." },
+    { id: "lg-tofukuji", nome: "Tofuku-ji", cidade: "kyoto", bairro: "Higashiyama/Fushimi", categoria: "templos", prioridade: "alta", status: "quero", notas: "Apareceu 2x — unificado." },
+    { id: "lg-kenninji", nome: "Kennin-ji", cidade: "kyoto", bairro: "Gion", categoria: "templos", prioridade: "media", status: "quero", notas: "Apareceu 2x — unificado." },
+    { id: "lg-kiyomizudera", nome: "Kiyomizu-dera", cidade: "kyoto", bairro: "Higashiyama", categoria: "templos", prioridade: "alta", status: "quero", notas: "Apareceu 4x na sua lista ('Kiyomizu dera' x2, 'Kiyomizu-dera', 'Kyomizu') — unificado." },
+    { id: "lg-ginkakuji", nome: "Ginkaku-ji", cidade: "kyoto", bairro: "Higashiyama (norte)", categoria: "templos", prioridade: "alta", status: "quero" },
+    { id: "lg-kinkakuji", nome: "Kinkaku-ji (Pavilhão Dourado)", cidade: "kyoto", bairro: "Kita", categoria: "templos", prioridade: "alta", status: "quero" },
+    { id: "lg-kodaiji", nome: "Kodai-ji", cidade: "kyoto", bairro: "Higashiyama", categoria: "templos", prioridade: "media", status: "quero" },
+    { id: "lg-nanzenji", nome: "Nanzen-ji complex (+ Konchi-in)", cidade: "kyoto", bairro: "Higashiyama (Nanzen-ji)", categoria: "templos", prioridade: "alta", status: "quero" },
+    { id: "lg-yasaka-shrine", nome: "Yasaka Shrine", cidade: "kyoto", bairro: "Gion", categoria: "templos", prioridade: "alta", status: "quero", notas: "Apareceu 2x — unificado." },
+    { id: "lg-hokanji", nome: "Hokan-ji (Pagode Yasaka)", cidade: "kyoto", bairro: "Higashiyama", categoria: "templos", prioridade: "media", status: "quero" },
+    { id: "lg-kitano-tenmangu", nome: "Kitano Tenmangu Shrine", cidade: "kyoto", bairro: "Kamishichiken", categoria: "templos", prioridade: "media", status: "quero", notas: "Nome corrigido de 'Kitano Tenmagu Shire'." },
+    { id: "lg-tenjuan", nome: "Tenju-an", cidade: "kyoto", bairro: "Higashiyama (Nanzen-ji)", categoria: "templos", prioridade: "baixa", status: "talvez", notas: "Sub-templo do Nanzen-ji com jardim próprio — ingresso separado do complexo principal." },
+    { id: "lg-saihoji", nome: "Saihō-ji (Kokedera)", cidade: "kyoto", bairro: "Nishikyo", categoria: "templos", prioridade: "baixa", status: "talvez", verificarPertoDaViagem: true, notas: "[A VERIFICAR] costuma exigir reserva por carta/formulário com bastante antecedência — não é visita espontânea." },
+    { id: "lg-jizoin", nome: "Jizō-in (Templo do Bambu)", cidade: "kyoto", bairro: "Arashiyama (Saga)", categoria: "templos", prioridade: "baixa", status: "talvez" },
+    { id: "lg-matsunoo-taisha", nome: "Matsuno-o Taisha", cidade: "kyoto", bairro: "Nishikyo (Arashiyama)", categoria: "templos", prioridade: "baixa", status: "talvez", notas: "Nome provável — sua lista tinha 'Matsuotaisha'." },
+    { id: "lg-otani-honbyo", nome: "Otani Hombyo", cidade: "kyoto", bairro: "Higashiyama", categoria: "templos", prioridade: "baixa", status: "talvez" },
+    { id: "lg-yasaka-koshindo", nome: "Yasaka Koshin-do", cidade: "kyoto", bairro: "Higashiyama (perto do Yasaka Shrine)", categoria: "templos", prioridade: "baixa", status: "talvez", notas: "Diferente do Yasaka Shrine, apesar do nome parecido — santuário pequeno e colorido, boa foto." },
+    { id: "lg-reigenin", nome: "Reigen-in", cidade: "kyoto", bairro: "[A VERIFICAR]", categoria: "templos", prioridade: "baixa", status: "talvez", verificarPertoDaViagem: true, notas: "[A VERIFICAR] a qual complexo pertence e se abre normalmente ao público." },
+    { id: "lg-sanjusangendo", nome: "Sanjūsangen-do", cidade: "kyoto", bairro: "Higashiyama (perto da Est. Kyoto)", categoria: "templos", prioridade: "alta", status: "quero", notas: "1.001 estátuas de Kannon." },
+
+    // ——— KYOTO — Bairros, ruas e natureza ———
+    { id: "lg-gion-bairro", nome: "Gion (bairro)", cidade: "kyoto", bairro: "Gion", categoria: "bairros", prioridade: "alta", status: "quero" },
+    { id: "lg-higashiyama-bairro", nome: "Higashiyama (bairro)", cidade: "kyoto", bairro: "Higashiyama", categoria: "bairros", prioridade: "media", status: "talvez", notas: "Distrito amplo que já cobre Kiyomizu-dera, Gion, Yasaka, Kodai-ji, Ninenzaka/Sannenzaka — pode ser redundante como item separado. Sua escolha manter ou remover." },
+    { id: "lg-ninenzaka-sannenzaka", nome: "Ninenzaka e Sannenzaka", cidade: "kyoto", bairro: "Higashiyama", categoria: "bairros", prioridade: "alta", status: "quero" },
+    { id: "lg-pontocho", nome: "Pontocho Alley", cidade: "kyoto", bairro: "centro (rio Kamo)", categoria: "bairros", prioridade: "alta", status: "quero", melhorHorario: "noite" },
+    { id: "lg-kamo-river", nome: "Rio Kamo (passeio à beira-rio)", cidade: "kyoto", bairro: "centro", categoria: "bairros", prioridade: "media", status: "quero" },
+    { id: "lg-arashiyama-bamboo", nome: "Arashiyama Bamboo Grove", cidade: "kyoto", bairro: "Arashiyama", categoria: "bairros", prioridade: "alta", status: "quero", melhorHorario: "bem cedo, antes da multidão" },
+    { id: "lg-togetsukyo", nome: "Togetsukyo Bridge", cidade: "kyoto", bairro: "Arashiyama", categoria: "fotos", prioridade: "media", status: "quero" },
+    { id: "lg-philosophers-path", nome: "Philosopher's Path", cidade: "kyoto", bairro: "Higashiyama (Ginkaku-ji a Nanzen-ji)", categoria: "bairros", prioridade: "alta", status: "quero", notas: "Combina bem com Ginkaku-ji e Nanzen-ji no mesmo passeio." },
+    { id: "lg-nishijin", nome: "Nishijin (bairro)", cidade: "kyoto", bairro: "Nishijin", categoria: "bairros", prioridade: "media", status: "quero" },
+    { id: "lg-fushimi-sake", nome: "Fushimi (bairro das destilarias de saquê)", cidade: "kyoto", bairro: "Fushimi", categoria: "bairros", prioridade: "media", status: "quero" },
+    { id: "lg-kurama-kibune", nome: "Kurama e Kibune", cidade: "kyoto", bairro: "norte de Kyoto (montanhas)", categoria: "fora", prioridade: "media", status: "talvez", notas: "Excursão de meio dia/dia inteiro — trilha + onsen + restaurantes sobre o rio. Une 'Kurama/Kihune' e 'Mount Kurama' da sua lista." },
+    { id: "lg-saga-toriimoto-street", nome: "Saga Toriimoto Street", cidade: "kyoto", bairro: "Arashiyama (Saga)", categoria: "bairros", prioridade: "media", status: "quero", notas: "Rua tradicional preservada, acesso aos templos Otagi/Adashino Nenbutsu-ji." },
+
+    // ——— KYOTO — Bate-volta ———
+    { id: "lg-uji", nome: "Uji (bate-volta — chá matcha)", cidade: "kyoto", bairro: "Uji", categoria: "fora", prioridade: "alta", status: "quero", notas: "Já combina com o Nintendo Museum no dia 11/09." },
+    { id: "lg-amanohashidate", nome: "Amanohashidate", cidade: "kyoto", bairro: "norte de Kyoto (litoral)", categoria: "fora", prioridade: "baixa", status: "talvez", verificarPertoDaViagem: true, notas: "[A VERIFICAR] ~2h de trem de Kyoto — dia inteiro, avaliar se cabe no roteiro." },
+
+    // ——— KYOTO — Compras ———
+    { id: "lg-goat-kyoto", nome: "GOAT Kyoto Shijo (camisas vintage)", cidade: "kyoto", bairro: "Shijo", categoria: "compras", prioridade: "alta", status: "quero", fonte: "memória do projeto" },
+    { id: "lg-teramachi-dori", nome: "Teramachi-dori", cidade: "kyoto", bairro: "centro", categoria: "compras", prioridade: "media", status: "quero", notas: "Nome corrigido de 'Teremachi Don Street'." },
+    { id: "lg-shinkyogoku", nome: "Shinkyogoku Shopping Street", cidade: "kyoto", bairro: "centro", categoria: "compras", prioridade: "media", status: "quero" },
+    { id: "lg-kyukyodo", nome: "Kyukyodo (papelaria/incenso)", cidade: "kyoto", bairro: "centro", categoria: "papelaria", prioridade: "alta", status: "quero", notas: "Apareceu 2x — unificado." },
+    { id: "lg-dedepartment-kyoto", nome: "D&Department Kyoto", cidade: "kyoto", bairro: "[A VERIFICAR]", categoria: "design", prioridade: "media", status: "quero", notas: "Nome corrigido de 'D&Departament'." },
+
+    // ——— KYOTO — Design, livros e papelaria ———
+    { id: "lg-le-labo-kyoto", nome: "Le Labo Kyoto Machiya (perfumaria + café)", cidade: "kyoto", bairro: "centro (machiya)", categoria: "cafes", prioridade: "media", status: "quero", notas: "Une 'Le labo' e 'Le labo café' da sua lista — é a mesma loja, uma perfumaria numa casa machiya restaurada com café integrado." },
+
+    // ——— KYOTO — Games e tecnologia ———
+    { id: "lg-nintendo-kyoto-store", nome: "Nintendo Kyoto (loja)", cidade: "kyoto", bairro: "centro", categoria: "games", prioridade: "alta", status: "quero", notas: "Une 'Nintendo Kyoto' e 'Nintendo Store' — mesma loja oficial." },
+
+    // ——— KYOTO — Museus, mercados e experiências ———
+    { id: "lg-samurai-ninja-museum", nome: "Samurai & Ninja Museum", cidade: "kyoto", bairro: "centro", categoria: "museus", prioridade: "baixa", status: "talvez" },
+    { id: "lg-kyoto-intl-manga-museum", nome: "Kyoto International Manga Museum", cidade: "kyoto", bairro: "centro", categoria: "museus", prioridade: "media", status: "quero" },
+
+    // ——— KYOTO — Cafés e padarias ———
+    { id: "lg-sarasa-nishijin", nome: "Sarasa Nishijin", cidade: "kyoto", bairro: "Nishijin", categoria: "cafes", prioridade: "media", status: "quero", fonte: "memória do projeto" },
+    { id: "lg-motoi-gyoza", nome: "Motoi Gyoza", cidade: "kyoto", bairro: "[A VERIFICAR]", categoria: "comida", prioridade: "media", status: "quero", notas: "Apareceu 2x — unificado." },
+    { id: "lg-hikiniku-to-come", nome: "Hikiniku To Come", cidade: "kyoto", bairro: "[A VERIFICAR]", categoria: "comida", prioridade: "media", status: "quero", notas: "Apareceu 2x (diferença de maiúsculas) — unificado." },
+
+    // ——— KYOTO — Comida e restaurantes ———
+    { id: "lg-ichiran-kyoto", nome: "Ichiran Ramen (Kyoto)", cidade: "kyoto", bairro: "várias unidades", categoria: "comida", prioridade: "media", status: "quero", notas: "ID separado de 'lg-ichiran' (Tóquio) para não duplicar." },
+    { id: "lg-yamacho", nome: "Yamacho (unagi)", cidade: "kyoto", bairro: "[A VERIFICAR]", categoria: "comida", prioridade: "media", status: "quero", verificarPertoDaViagem: true, notas: "[A VERIFICAR] só abre em dias de semana — checar antes de planejar." },
+    { id: "lg-tensuke", nome: "Tensuke (tempura)", cidade: "kyoto", bairro: "[A VERIFICAR]", categoria: "comida", prioridade: "media", status: "quero", verificarPertoDaViagem: true, notas: "[A VERIFICAR] fechado às segundas." },
+    { id: "lg-tonys", nome: "Tony's", cidade: "kyoto", bairro: "[A VERIFICAR]", categoria: "comida", prioridade: "media", status: "quero", verificarPertoDaViagem: true, notas: "[A VERIFICAR] fechado às segundas." },
+    { id: "lg-amam-dacotan-arashiyama", nome: "AMAM DACOTAN (Arashiyama)", cidade: "kyoto", bairro: "Arashiyama", categoria: "cafes", prioridade: "media", status: "quero", notas: "ID separado de 'lg-amam-dacotan' (Tóquio/Omotesando) para não duplicar — pode ser a mesma marca em unidade diferente." },
+    { id: "lg-tsukimochiya-kawamichiya", nome: "Kawamichiya (soba tradicional)", cidade: "kyoto", bairro: "centro", categoria: "comida", prioridade: "media", status: "talvez", notas: "Nome provável a partir da sua lista." },
+    { id: "lg-katcto", nome: "Kacto", cidade: "kyoto", bairro: "[A VERIFICAR]", categoria: "confirmar", prioridade: "baixa", status: "talvez", notas: "[A VERIFICAR] não localizei referência confiável — checar mais perto da viagem." },
+    { id: "lg-yagi", nome: "Yagi", cidade: "kyoto", bairro: "[A VERIFICAR]", categoria: "confirmar", prioridade: "baixa", status: "talvez", notas: "[A VERIFICAR] não localizei referência confiável." },
+    { id: "lg-sugari", nome: "Sugari", cidade: "kyoto", bairro: "[A VERIFICAR]", categoria: "confirmar", prioridade: "baixa", status: "talvez", notas: "[A VERIFICAR] não localizei referência confiável." },
+    { id: "lg-wakabaya", nome: "Wakabaya", cidade: "kyoto", bairro: "[A VERIFICAR]", categoria: "confirmar", prioridade: "baixa", status: "talvez", notas: "[A VERIFICAR] não localizei referência confiável." },
+    { id: "lg-rikka-knot", nome: "Rikka Knot", cidade: "kyoto", bairro: "[A VERIFICAR]", categoria: "confirmar", prioridade: "baixa", status: "talvez", notas: "[A VERIFICAR] não localizei referência confiável." },
+    { id: "lg-sowgen", nome: "Sowgen", cidade: "kyoto", bairro: "[A VERIFICAR]", categoria: "confirmar", prioridade: "baixa", status: "talvez", notas: "[A VERIFICAR] não localizei referência confiável." },
+    { id: "lg-pelgag", nome: "Pelgag", cidade: "kyoto", bairro: "[A VERIFICAR]", categoria: "confirmar", prioridade: "baixa", status: "talvez", notas: "[A VERIFICAR] não localizei referência confiável." },
+    { id: "lg-kyo-amahare", nome: "Kyo Amahare", cidade: "kyoto", bairro: "[A VERIFICAR]", categoria: "confirmar", prioridade: "baixa", status: "talvez", notas: "[A VERIFICAR] não localizei referência confiável." },
+    { id: "lg-nuunu-kyoto", nome: "Nuunu Kyoto", cidade: "kyoto", bairro: "[A VERIFICAR]", categoria: "confirmar", prioridade: "baixa", status: "talvez", notas: "[A VERIFICAR] não localizei referência confiável." },
+    { id: "lg-matsubata", nome: "Matsubata", cidade: "kyoto", bairro: "[A VERIFICAR]", categoria: "confirmar", prioridade: "baixa", status: "talvez", notas: "[A VERIFICAR] não localizei referência confiável." },
+    { id: "lg-kyoto-ranzan", nome: "Kyoto Ranzan", cidade: "kyoto", bairro: "[A VERIFICAR]", categoria: "confirmar", prioridade: "baixa", status: "talvez", notas: "[A VERIFICAR] não localizei referência confiável." },
+    { id: "lg-a-too", nome: "A-too", cidade: "kyoto", bairro: "[A VERIFICAR]", categoria: "confirmar", prioridade: "baixa", status: "talvez", notas: "[A VERIFICAR] não localizei referência confiável." },
+    { id: "lg-ojamakan", nome: "Ojamakan", cidade: "kyoto", bairro: "[A VERIFICAR]", categoria: "confirmar", prioridade: "baixa", status: "talvez", notas: "[A VERIFICAR] não localizei referência confiável." },
+    { id: "lg-japan-edition", nome: "Japan Edition", cidade: "kyoto", bairro: "[A VERIFICAR]", categoria: "confirmar", prioridade: "baixa", status: "talvez", notas: "[A VERIFICAR] não localizei referência confiável." },
+    { id: "lg-niitodo", nome: "Niitodo", cidade: "kyoto", bairro: "[A VERIFICAR]", categoria: "confirmar", prioridade: "baixa", status: "talvez", notas: "[A VERIFICAR] não localizei referência confiável." },
+    { id: "lg-onigiri-ranma", nome: "Onigiri Ranma", cidade: "kyoto", bairro: "[A VERIFICAR]", categoria: "confirmar", prioridade: "baixa", status: "talvez", notas: "[A VERIFICAR] não localizei referência confiável." },
+    { id: "lg-renkonya", nome: "Renkonya", cidade: "kyoto", bairro: "[A VERIFICAR]", categoria: "confirmar", prioridade: "baixa", status: "talvez", notas: "[A VERIFICAR] não localizei referência confiável." },
+    { id: "lg-sway", nome: "Sway", cidade: "kyoto", bairro: "[A VERIFICAR]", categoria: "confirmar", prioridade: "baixa", status: "talvez", notas: "[A VERIFICAR] não localizei referência confiável." },
+    { id: "lg-saryo-tesshin", nome: "Saryo Tesshin", cidade: "kyoto", bairro: "[A VERIFICAR]", categoria: "confirmar", prioridade: "baixa", status: "talvez", notas: "[A VERIFICAR] não localizei referência confiável." },
+    { id: "lg-yamamoto-menzou", nome: "Yamamoto Menzou", cidade: "kyoto", bairro: "[A VERIFICAR]", categoria: "confirmar", prioridade: "baixa", status: "talvez", notas: "[A VERIFICAR] não localizei referência confiável." },
+    { id: "lg-kyoto-engine-ramen", nome: "Kyoto Engine Ramen", cidade: "kyoto", bairro: "[A VERIFICAR]", categoria: "confirmar", prioridade: "baixa", status: "talvez", notas: "[A VERIFICAR] não localizei referência confiável." },
+    { id: "lg-public-tokyo-kyoto", nome: "Public Tokyo (Kyoto)", cidade: "kyoto", bairro: "[A VERIFICAR]", categoria: "confirmar", prioridade: "baixa", status: "talvez", notas: "[A VERIFICAR] não localizei referência confiável — nome sugere marca de Tóquio com unidade em Kyoto." },
+    { id: "lg-sanjo-dori", nome: "Sanjo-dori", cidade: "kyoto", bairro: "centro", categoria: "confirmar", prioridade: "baixa", status: "talvez", notas: "Nome corrigido de 'Sanja Street' (não confirmado)." },
+    { id: "lg-yusai-tei", nome: "Arashiyama Yusai-tei", cidade: "kyoto", bairro: "Arashiyama", categoria: "confirmar", prioridade: "baixa", status: "talvez", notas: "[A VERIFICAR] não localizei referência confiável." },
+    { id: "lg-junsei", nome: "Junsei (tofu kaiseki)", cidade: "kyoto", bairro: "Higashiyama (Nanzen-ji)", categoria: "comida", prioridade: "media", status: "quero", notas: "Tradicional, ao lado do Nanzen-ji — bom pra um almoço leve depois do templo." },
+
+    // ——— OSAKA — Fora de Kyoto (sugestão: mover pra Osaka) ———
+    { id: "lg-katsuoji", nome: "Katsuo-ji Temple", cidade: "osaka", bairro: "Minoh", categoria: "templos", prioridade: "baixa", status: "talvez", notas: "Estava na sua lista de Kyoto, mas fica em Minoh (região metropolitana de Osaka) — confirmado por pesquisa: ~1h de Osaka, ~1h30-2h de Kyoto via trem+ônibus. Movido para cidade:'osaka'; melhor encaixar num dos dias livres de Osaka (13-15/09) do que tentar como bate-volta de Kyoto." }
   ],
 
   /* ---------- COMPRAS ---------- */
