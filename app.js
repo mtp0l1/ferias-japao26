@@ -302,10 +302,66 @@
   /* ---------- more sheet ---------- */
   var sheet = document.getElementById("more-sheet");
   var sheetBk = document.getElementById("sheet-backdrop");
-  document.getElementById("btn-more").onclick = function () { sheet.hidden = false; sheetBk.hidden = false; };
-  function closeSheet() { sheet.hidden = true; sheetBk.hidden = true; }
+  var sheetDrag = document.getElementById("sheet-draghandle");
+
+  function openSheet() {
+    sheet.hidden = false;
+    sheetBk.hidden = false;
+    sheet.classList.remove("closing", "dragging", "snapback");
+    sheet.style.transform = "";
+  }
+  function closeSheet() {
+    if (sheet.hidden) return;
+    sheetBk.hidden = true;
+    sheet.classList.remove("dragging", "snapback");
+    sheet.classList.add("closing");
+    var done = function () {
+      sheet.removeEventListener("animationend", done);
+      sheet.hidden = true;
+      sheet.classList.remove("closing");
+      sheet.style.transform = "";
+    };
+    sheet.addEventListener("animationend", done);
+    // fallback caso o evento não dispare (ex: tab trocada de foco)
+    setTimeout(done, 260);
+  }
+  document.getElementById("btn-more").onclick = openSheet;
   sheetBk.onclick = closeSheet;
   sheet.addEventListener("click", function (e) { if (e.target.closest("a")) closeSheet(); });
+
+  /* arrastar o sheet pra baixo pra fechar */
+  var dragY0 = 0, dragDY = 0, dragging = false, dragH = 0;
+  function dragStart(e) {
+    dragging = true;
+    dragY0 = e.clientY;
+    dragDY = 0;
+    dragH = sheet.offsetHeight || 400;
+    sheet.classList.add("dragging");
+    sheet.classList.remove("snapback");
+    if (sheetDrag.setPointerCapture) { try { sheetDrag.setPointerCapture(e.pointerId); } catch (err) {} }
+  }
+  function dragMove(e) {
+    if (!dragging) return;
+    dragDY = Math.max(0, e.clientY - dragY0);
+    sheet.style.transform = "translateY(" + dragDY + "px)";
+  }
+  function dragEnd() {
+    if (!dragging) return;
+    dragging = false;
+    sheet.classList.remove("dragging");
+    if (dragDY > Math.min(130, dragH * 0.3)) {
+      closeSheet();
+    } else {
+      sheet.classList.add("snapback");
+      sheet.style.transform = "";
+      setTimeout(function () { sheet.classList.remove("snapback"); }, 260);
+    }
+    dragDY = 0;
+  }
+  sheetDrag.addEventListener("pointerdown", dragStart);
+  sheetDrag.addEventListener("pointermove", dragMove);
+  sheetDrag.addEventListener("pointerup", dragEnd);
+  sheetDrag.addEventListener("pointercancel", dragEnd);
 
   /* ---------- theme ---------- */
   var themeBtn = document.getElementById("btn-theme");
