@@ -24,15 +24,35 @@
   var undoBuf = null;
 
   function seed() { return JSON.parse(JSON.stringify(window.SEED_DATA)); }
+  var SYNC_KEYS = ["lugares", "compras", "checklist", "voos", "reservas", "documentos", "roteiro"];
+  function mergeNovosItens(existente, atual) {
+    var mudou = false;
+    SYNC_KEYS.forEach(function (chave) {
+      if (!Array.isArray(existente[chave])) { existente[chave] = atual[chave] || []; mudou = true; return; }
+      var idsExistentes = {};
+      existente[chave].forEach(function (item) { if (item && item.id) idsExistentes[item.id] = true; });
+      (atual[chave] || []).forEach(function (item) {
+        if (item && item.id && !idsExistentes[item.id]) { existente[chave].push(item); mudou = true; }
+      });
+    });
+    return mudou;
+  }
   function load() {
+    var atual = seed();
     try {
       var raw = localStorage.getItem(LS_KEY);
       if (raw) {
         var d = JSON.parse(raw);
-        if (d && d.lugares) return d;
+        if (d && d.lugares) {
+          // Sincroniza: adiciona itens novos do site (por id) sem tocar no que você já editou.
+          if (mergeNovosItens(d, atual)) {
+            try { localStorage.setItem(LS_KEY, JSON.stringify(d)); } catch (e) { /* ignore */ }
+          }
+          return d;
+        }
       }
     } catch (e) { /* seed */ }
-    return seed();
+    return atual;
   }
   function save() { try { localStorage.setItem(LS_KEY, JSON.stringify(DB)); } catch (e) { toast("Não consegui salvar (armazenamento cheio?)"); } }
   function uid(p) { return p + "-" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
@@ -422,7 +442,7 @@
   }
   function rHome() {
     titleEl.textContent = "";
-    var h = '<div class="hero"><span class="hero-eyebrow">Férias 2026</span><h2>Japão 🇯🇵</h2><p>Tóquio · Kawaguchiko · Kyoto · Osaka · Himeji · Kamakura</p></div>';
+    var h = '<div class="hero"><span class="hero-eyebrow">Férias 2026</span><h2>Japão 🇯🇵</h2></div>';
 
     h += '<div class="quickgrid">' +
       qc("#/roteiro", "🗓", "Roteiro", DB.roteiro.length + " dias") +
@@ -1052,4 +1072,6 @@
   /* ---------- boot ---------- */
   if (!location.hash) location.hash = "#/home";
   render();
+  // Reforça a gravação da sincronização de dados novos um instante depois do carregamento inicial.
+  setTimeout(function () { try { localStorage.setItem(LS_KEY, JSON.stringify(DB)); } catch (e) { /* ignore */ } }, 400);
 })();
