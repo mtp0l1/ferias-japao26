@@ -450,7 +450,7 @@
   /* ----- FRASES ----- */
   function rFrases() {
     titleEl.textContent = "Frases";
-    var h = '<div class="notice info"><span>ⓘ</span><div>Frases prontas para o dia a dia. Guias completos (transporte, etiqueta, emergência) em Mais → Info úteis.</div></div>';
+    var h = '<div class="notice info"><span>ⓘ</span><div>Frases prontas para o dia a dia. Guias completos (transporte, etiqueta, emergência) em Menu → Informações.</div></div>';
     DB.infoUteis.frases.forEach(function (f) {
       h += '<div class="card frase-card"><span class="frase-jp">' + esc(f.jp) + '</span><span class="frase-romaji">' + esc(f.romaji) + '</span><span class="frase-pt">' + esc(f.pt) + "</span></div>";
     });
@@ -972,12 +972,9 @@
 
   /* ----- INFO ----- */
   function rInfo() {
-    titleEl.textContent = "Info úteis";
+    titleEl.textContent = "Informações";
     var i = DB.infoUteis;
-    var h = '<div class="section-label">Frases</div>';
-    i.frases.forEach(function (f) {
-      h += '<div class="card frase-card"><span class="frase-jp">' + esc(f.jp) + '</span><span class="frase-romaji">' + esc(f.romaji) + '</span><span class="frase-pt">' + esc(f.pt) + "</span></div>";
-    });
+    var h = '<div class="notice info"><span>ⓘ</span><div>Frases do dia a dia ficam na aba Frases. Aqui: emergência e guias rápidos.</div></div>';
     h += '<div class="section-label">Emergência</div>';
     i.emergencia.forEach(function (e) {
       h += '<div class="card"><div class="card-title" style="font-size:14.5px">' + esc(e.titulo) + '</div><div class="card-sub">' + esc(e.detalhe) + "</div></div>";
