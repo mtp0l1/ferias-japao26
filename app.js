@@ -385,21 +385,30 @@
 
   /* ---------- theme ---------- */
   var themeBtn = document.getElementById("btn-theme");
+  var ICON_SUN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.4 4.4l1.55 1.55M18.05 18.05l1.55 1.55M2.5 12h2.2M19.3 12h2.2M4.4 19.6l1.55-1.55M18.05 5.95l1.55-1.55"/></svg>';
+  var ICON_MOON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.2A8.5 8.5 0 1 1 9.8 4a6.8 6.8 0 0 0 10.2 10.2Z"/></svg>';
   function syncThemeColor() {
     var dark = document.documentElement.getAttribute("data-theme") === "dark";
     document.querySelectorAll('meta[name="theme-color"]').forEach(function (m) { m.setAttribute("content", dark ? "#141413" : "#fafaf9"); });
+  }
+  function updateThemeIcon() {
+    var dark = document.documentElement.getAttribute("data-theme") === "dark";
+    themeBtn.innerHTML = dark ? ICON_SUN : ICON_MOON;
+    themeBtn.setAttribute("aria-label", dark ? "Mudar para tema claro" : "Mudar para tema escuro");
   }
   function applyTheme() {
     var t = localStorage.getItem(THEME_KEY);
     if (t) document.documentElement.setAttribute("data-theme", t);
     else if (window.matchMedia("(prefers-color-scheme: dark)").matches) document.documentElement.setAttribute("data-theme", "dark");
     syncThemeColor();
+    updateThemeIcon();
   }
   themeBtn.onclick = function () {
     var cur = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", cur);
     localStorage.setItem(THEME_KEY, cur);
     syncThemeColor();
+    updateThemeIcon();
   };
   applyTheme();
 
