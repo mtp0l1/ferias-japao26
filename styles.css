@@ -69,15 +69,12 @@ select { background-image: linear-gradient(45deg, transparent 50%, var(--text-3)
 
 /* ---- topbar ---- */
 .topbar {
-  position: sticky; top: 0; z-index: 30;
   display: flex; align-items: center; gap: 8px;
   padding: calc(10px + env(safe-area-inset-top)) 16px 10px;
-  background: color-mix(in srgb, var(--bg) 82%, transparent);
-  -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
 }
 .topbar-title { font-size: 17px; font-weight: 650; flex: 1; text-align: center; letter-spacing: -.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .topbar-back, .topbar-action { width: 34px; height: 34px; border-radius: 50%; font-size: 20px; display: grid; place-items: center; color: var(--text-2); flex-shrink: 0; }
+.topbar-action svg { width: 22px; height: 22px; }
 .topbar-back:active, .topbar-action:active { background: var(--surface-2); }
 .topbar-back { font-size: 26px; line-height: 1; padding-bottom: 3px; }
 .topbar-back[hidden] { display: none; }
