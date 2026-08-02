@@ -421,8 +421,8 @@
     b.textContent = horaEm("America/Sao_Paulo");
   }
   function rHome() {
-    titleEl.textContent = "Férias 2026";
-    var h = '<div class="hero"><h2>Japão 🇯🇵</h2><p>Tóquio · Kawaguchiko · Kyoto · Osaka · Himeji · Kamakura</p></div>';
+    titleEl.textContent = "";
+    var h = '<div class="hero"><span class="hero-eyebrow">Férias 2026</span><h2>Japão 🇯🇵</h2><p>Tóquio · Kawaguchiko · Kyoto · Osaka · Himeji · Kamakura</p></div>';
 
     h += '<div class="quickgrid">' +
       qc("#/roteiro", "🗓", "Roteiro", DB.roteiro.length + " dias") +
