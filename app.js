@@ -1072,4 +1072,6 @@
   /* ---------- boot ---------- */
   if (!location.hash) location.hash = "#/home";
   render();
+  // Reforça a gravação da sincronização de dados novos um instante depois do carregamento inicial.
+  setTimeout(function () { try { localStorage.setItem(LS_KEY, JSON.stringify(DB)); } catch (e) { /* ignore */ } }, 400);
 })();
