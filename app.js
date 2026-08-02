@@ -6,7 +6,7 @@
   var THEME_KEY = "japantrip-theme";
 
   /* ---------- labels ---------- */
-  var CIDADES = { toquio: "Tóquio", kyoto: "Kyoto", osaka: "Osaka", fuji: "Monte Fuji", voo: "Voo", outra: "Outra" };
+  var CIDADES = { toquio: "Tóquio", kyoto: "Kyoto", osaka: "Osaka", kawaguchiko: "Kawaguchiko", kamakura: "Kamakura", himeji: "Himeji", fuji: "Monte Fuji", voo: "Voo", outra: "Outra" };
   var CAT_LUGAR = { bairros: "Bairros e caminhadas", templos: "Templos e santuários", comida: "Comida e restaurantes", cafes: "Cafés e padarias", compras: "Compras e lojas", games: "Videogames e tecnologia", design: "Design, livros e papelaria", mercados: "Mercados", museus: "Museus e arte", fotos: "Fotografia e vistas", fora: "Bate-volta / fora de Tóquio", confirmar: "[A confirmar]" };
   var CAT_COMPRA = { roupas: "Roupas e tênis", eletronicos: "Eletrônicos", videogames: "Videogames", papelaria: "Papelaria", perfumes: "Perfumes", beleza: "Beleza", cozinha: "Cozinha e facas", souvenirs: "Souvenirs", midia: "Revistas, livros e música", fuji: "Fuji", "segunda-mao": "Segunda mão", design: "Design e objetos", confirmar: "[A confirmar]" };
   var ST_LUGAR = { quero: "Quero ir", reservado: "Reservado", confirmado: "Confirmado", feito: "Feito ✓", talvez: "Talvez", descartar: "Descartar" };
@@ -289,7 +289,7 @@
   var view = document.getElementById("view");
   var titleEl = document.getElementById("topbar-title");
   var backBtn = document.getElementById("btn-back");
-  var ROOT_ROUTES = ["home", "roteiro", "lugares", "fuji"];
+  var ROOT_ROUTES = ["home", "reservas", "frases", "documentos"];
 
   function route() {
     var h = location.hash.replace(/^#\//, "") || "home";
@@ -339,77 +339,68 @@
       el.classList.toggle("active", el.getAttribute("data-nav") === name || (name === "cidade" && el.getAttribute("data-nav") === "lugares"));
     });
     backBtn.hidden = ROOT_ROUTES.indexOf(name) >= 0;
-    var fns = { home: rHome, roteiro: rRoteiro, lugares: rLugares, cidade: rCidade, compras: rCompras, voos: rVoos, reservas: rReservas, fuji: rFuji, antes: rAntes, documentos: rDocs, info: rInfo, links: rLinks, dados: rDados };
+    var fns = { home: rHome, roteiro: rRoteiro, lugares: rLugares, cidade: rCidade, compras: rCompras, voos: rVoos, reservas: rReservas, fuji: rFuji, antes: rAntes, documentos: rDocs, info: rInfo, links: rLinks, dados: rDados, frases: rFrases };
     (fns[name] || rHome)(r);
   }
 
   /* ----- HOME ----- */
+  var CIDADE_SUB_LABEL = { kawaguchiko: "Base do Fuji", kamakura: "Bate-volta", himeji: "Bate-volta" };
+  function nLugaresCidade(cid) { return DB.lugares.filter(function (l) { return l.cidade === cid && l.status !== "descartar"; }).length; }
+  function cidadeSub(cid, termo) {
+    var n = nLugaresCidade(cid);
+    if (n > 0) return n + " lugares";
+    var dia = DB.roteiro.find(function (d) { return ((d.titulo || "") + " " + (d.deslocamentos || "")).toLowerCase().indexOf(termo) >= 0; });
+    if (dia) return (CIDADE_SUB_LABEL[cid] || "No roteiro") + " · " + dia.data.slice(8, 10) + "/" + dia.data.slice(5, 7);
+    return "Em breve";
+  }
+  function horaEm(tz) {
+    try { return new Intl.DateTimeFormat("pt-BR", { timeZone: tz, hour: "2-digit", minute: "2-digit", hour12: false }).format(new Date()); }
+    catch (e) { return "--:--"; }
+  }
+  var clockTimer = null;
+  function tickClock() {
+    var a = document.getElementById("clock-tokyo"), b = document.getElementById("clock-sp");
+    if (!a || !b) { clearInterval(clockTimer); clockTimer = null; return; }
+    a.textContent = horaEm("Asia/Tokyo");
+    b.textContent = horaEm("America/Sao_Paulo");
+  }
   function rHome() {
-    titleEl.textContent = "Japão 2026";
-    var dIda = diasAte("2026-09-04");
-    var pendTarefas = DB.checklist.filter(function (t) { return t.status !== "feito"; });
-    var urgentes = pendTarefas.filter(function (t) { return t.prazo && diasAte(t.prazo) <= 30; }).sort(function (a, b) { return (a.prazo || "9") < (b.prazo || "9") ? -1 : 1; }).slice(0, 3);
-    var resPend = DB.reservas.filter(function (r) { return ["confirmar", "pagar", "verificar"].indexOf(r.status) >= 0; });
-    var nLug = DB.lugares.filter(function (l) { return l.status !== "descartar"; }).length;
-    var nCompras = DB.compras.filter(function (c) { return c.status === "pesquisar" || c.status === "comprar"; }).length;
-
-    var emViagem = hoje() >= "2026-09-04" && hoje() <= "2026-09-22";
-    var diaHoje = DB.roteiro.find(function (d) { return d.data === hoje(); });
-
-    var h = '<div class="hero"><h2>Japão, setembro<br>de 2026 🇯🇵</h2><p>' + esc(DB.meta.periodo) + " · Tóquio → Fuji → Kyoto → Osaka</p>";
-    if (dIda > 0) h += '<div class="countdown"><b>' + dIda + "</b> dias para o embarque</div>";
-    h += "</div>";
-
-    if (emViagem && diaHoje) {
-      h += '<div class="section-label">Hoje</div>';
-      h += dayCard(diaHoje, true, true);
-    }
+    titleEl.textContent = "Férias 2026";
+    var h = '<div class="hero"><h2>Japão 🇯🇵</h2><p>Tóquio · Kawaguchiko · Kyoto · Osaka · Himeji · Kamakura</p></div>';
 
     h += '<div class="quickgrid">' +
-      qc("#/roteiro", "🗓", "Roteiro", DB.roteiro.length + " dias planejados") +
-      qc("#/fuji", "🗻", "Monte Fuji", "08–09/09 · Yoshida") +
-      qc("#/voos", "✈︎", "Voos", DB.voos.length ? "Emirates · " + DB.voos.length + " trechos" : "Adicionar voos") +
-      qc("#/reservas", "🎫", "Reservas", resPend.length + " para resolver") +
-      qc("#/compras", "🛍", "Compras", nCompras + " itens na lista") +
-      qc("#/antes", "✓", "Antes de ir", pendTarefas.length + " pendentes") +
+      qc("#/roteiro", "🗓", "Roteiro", DB.roteiro.length + " dias") +
+      qc("#/fuji", "🗻", "Fuji", "08–09/09 · Yoshida") +
+      qc("#/cidade/toquio", "🗼", "Tokyo", nLugaresCidade("toquio") + " lugares") +
+      qc("#/cidade/kawaguchiko", "🌸", "Kawaguchiko", cidadeSub("kawaguchiko", "kawaguchiko")) +
+      qc("#/cidade/kyoto", "⛩", "Kyoto", nLugaresCidade("kyoto") + " lugares") +
+      qc("#/cidade/osaka", "🏯", "Osaka", nLugaresCidade("osaka") + " lugares") +
+      qc("#/cidade/himeji", "🏰", "Himeji", cidadeSub("himeji", "himeji")) +
+      qc("#/cidade/kamakura", "🌊", "Kamakura", cidadeSub("kamakura", "kamakura")) +
       "</div>";
 
-    h += '<div class="statrow">' +
-      "<div class='stat'><b>" + nLug + "</b><span>lugares salvos</span></div>" +
-      "<div class='stat'><b>" + nCompras + "</b><span>compras abertas</span></div>" +
-      "<div class='stat'><b>" + pendTarefas.length + "</b><span>tarefas</span></div></div>";
+    h += '<div class="card clockcard">' +
+      '<div class="clock-col"><span class="clock-city">Tokyo</span><span class="clock-tz">UTC+9</span><span class="clock-time" id="clock-tokyo">' + horaEm("Asia/Tokyo") + "</span></div>" +
+      '<div class="clock-div"></div>' +
+      '<div class="clock-col"><span class="clock-city">São Paulo</span><span class="clock-tz">UTC-3</span><span class="clock-time" id="clock-sp">' + horaEm("America/Sao_Paulo") + "</span></div>" +
+      "</div>";
 
-    if (urgentes.length) {
-      h += '<div class="section-label">Próximos prazos</div>';
-      urgentes.forEach(function (t) {
-        h += '<div class="card alertcard" data-open-task="' + t.id + '"><div class="card-row"><div class="card-main"><div class="card-title">' + esc(t.titulo) + '</div><div class="card-sub">até ' + fmtData(t.prazo) + (diasAte(t.prazo) >= 0 ? " · em " + diasAte(t.prazo) + " dias" : " · atrasado") + "</div></div></div></div>";
-      });
-    }
-
-    h += '<div class="section-label">Adicionar rápido</div><div class="linkrow" style="margin-top:0">' +
-      '<button class="linkbtn" data-quick="lugar">+ Lugar</button>' +
-      '<button class="linkbtn" data-quick="compra">+ Compra</button>' +
-      '<button class="linkbtn" data-quick="tarefa">+ Tarefa</button>' +
-      '<button class="linkbtn" data-quick="reserva">+ Reserva</button>' +
-      '<button class="linkbtn" data-quick="documento">+ Documento</button></div>';
-
-    h += '<p class="footer-note">Feito para caber no bolso. Dados salvos neste aparelho — exporte em “Mais → Dados”.</p>';
     view.innerHTML = h;
-
-    view.querySelectorAll("[data-quick]").forEach(function (b) {
-      b.onclick = function () {
-        var k = b.getAttribute("data-quick");
-        if (k === "lugar") addOrEdit("lugares", F_LUGAR, null, "Adicionar lugar");
-        if (k === "compra") addOrEdit("compras", F_COMPRA, null, "Adicionar compra");
-        if (k === "tarefa") addOrEdit("checklist", F_TAREFA, null, "Adicionar tarefa");
-        if (k === "reserva") addOrEdit("reservas", F_RESERVA, null, "Adicionar reserva");
-        if (k === "documento") addOrEdit("documentos", F_DOC, null, "Adicionar documento");
-      };
-    });
-    view.querySelectorAll("[data-open-task]").forEach(function (c) { c.onclick = function () { go("antes"); }; });
-    bindDayCards();
+    clearInterval(clockTimer);
+    clockTimer = setInterval(tickClock, 30000);
   }
   function qc(href, ico, t, sub) { return '<a class="quickcard" href="' + href + '"><span class="qc-ico">' + ico + '</span><span class="qc-title">' + t + '</span><span class="qc-sub">' + esc(sub) + "</span></a>"; }
+
+  /* ----- FRASES ----- */
+  function rFrases() {
+    titleEl.textContent = "Frases";
+    var h = '<div class="notice info"><span>ⓘ</span><div>Frases prontas para o dia a dia. Guias completos (transporte, etiqueta, emergência) em Mais → Info úteis.</div></div>';
+    DB.infoUteis.frases.forEach(function (f) {
+      h += '<div class="card frase-card"><span class="frase-jp">' + esc(f.jp) + '</span><span class="frase-romaji">' + esc(f.romaji) + '</span><span class="frase-pt">' + esc(f.pt) + "</span></div>";
+    });
+    view.innerHTML = h;
+  }
+
 
   /* ----- ROTEIRO ----- */
   function dayCard(d, open, compact) {

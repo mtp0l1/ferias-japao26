@@ -207,16 +207,25 @@ details.code .code-value { font-family: ui-monospace, "SF Mono", Menlo, monospac
 .hero p { color: var(--text-2); font-size: 14.5px; margin-top: 4px; }
 .countdown { display: inline-flex; align-items: baseline; gap: 6px; margin-top: 10px; background: var(--accent-soft); color: var(--accent); border-radius: 12px; padding: 8px 14px; font-weight: 650; font-size: 14px; }
 .countdown b { font-size: 20px; }
-.quickgrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 6px; }
+.quickgrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 14px; }
 .quickcard {
   background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-  box-shadow: var(--shadow); padding: 14px; display: flex; flex-direction: column; gap: 2px;
+  box-shadow: var(--shadow); padding: 18px 16px; display: flex; flex-direction: column; gap: 3px;
+  min-height: 96px; justify-content: center;
   transition: transform .16s var(--ease);
 }
 .quickcard:active { transform: scale(.965); }
-.quickcard .qc-ico { font-size: 20px; margin-bottom: 6px; }
-.quickcard .qc-title { font-weight: 640; font-size: 15px; letter-spacing: -.01em; }
+.quickcard .qc-ico { font-size: 26px; margin-bottom: 6px; }
+.quickcard .qc-title { font-weight: 650; font-size: 15.5px; letter-spacing: -.01em; }
 .quickcard .qc-sub { font-size: 12.5px; color: var(--text-2); }
+
+/* ---- home clock card ---- */
+.clockcard { display: flex; align-items: stretch; padding: 20px 8px; margin-bottom: 6px; }
+.clock-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.clock-city { font-size: 12px; font-weight: 650; text-transform: uppercase; letter-spacing: .06em; color: var(--text-2); }
+.clock-tz { font-size: 11px; color: var(--text-3); }
+.clock-time { font-size: 30px; font-weight: 700; letter-spacing: -.02em; font-variant-numeric: tabular-nums; margin-top: 3px; }
+.clock-div { width: 1px; align-self: stretch; background: var(--border); margin: 2px 6px; }
 .statrow { display: flex; gap: 10px; margin: 14px 0 4px; }
 .stat { flex: 1; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 8px; text-align: center; }
 .stat b { display: block; font-size: 20px; letter-spacing: -.02em; }
