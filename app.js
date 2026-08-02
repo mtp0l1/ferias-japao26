@@ -270,11 +270,11 @@
   ];
 
   function addOrEdit(collName, fields, item, title, extra) {
-    openForm(title, fields, item, function (data) {
+    openForm(title, fields, item || extra, function (data) {
       if (item) Object.assign(item, data);
       else {
         data.id = uid(collName.slice(0, 2));
-        if (extra) Object.assign(data, extra);
+        if (extra) Object.keys(extra).forEach(function (k) { if (data[k] === undefined || data[k] === "") data[k] = extra[k]; });
         coll(collName).push(data);
       }
     });
