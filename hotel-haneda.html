@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Royal Park Hotel Haneda — Noite 1</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+  :root {
+    --bg: #0a0a0f;
+    --s1: #111118;
+    --s2: #18181f;
+    --border: #22222e;
+    --border2: #2e2e3e;
+    --text: #e8e8f0;
+    --muted: #6b6b86;
+    --green: #4ade80;
+    --green-dim: #1a3d28;
+    --yellow: #fbbf24;
+    --yellow-dim: #3d3010;
+    --blue: #60a5fa;
+    --blue-dim: #1a2a3d;
+    --purple: #a78bfa;
+    --purple-dim: #2a1a3d;
+    --gold: #f59e0b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 0 0 4rem;
+  }
+
+  .header {
+    border-bottom: 1px solid var(--border);
+    padding: 2rem 1.5rem 1.5rem;
+    background: linear-gradient(180deg, rgba(96,165,250,.08), transparent);
+  }
+  .header-inner { max-width: 780px; margin: 0 auto; }
+  .back-link {
+    display: inline-flex; align-items: center; gap: .4rem;
+    color: var(--muted); text-decoration: none;
+    font-size: .8125rem; margin-bottom: 1.25rem;
+  }
+  .header-tag {
+    display: inline-block;
+    background: var(--blue-dim); color: var(--blue);
+    font-size: 10px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; padding: .3rem .7rem;
+    border-radius: 99px; margin-bottom: .75rem;
+  }
+  .header-title { font-size: 1.75rem; font-weight: 700; margin-bottom: .35rem; }
+  .header-sub { font-size: .9375rem; color: var(--muted); }
+
+  .main { max-width: 780px; margin: 0 auto; padding: 2rem 1.5rem 0; }
+  .section { margin-bottom: 2rem; }
+  .section-label {
+    font-size: 10px; font-weight: 700; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--muted);
+    margin-bottom: 1rem; display: flex; align-items: center; gap: .5rem;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* CARD RESERVA */
+  .res-card {
+    background: var(--s1); border: 1px solid var(--border2);
+    border-radius: 16px; padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .res-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1rem; }
+  .res-item { }
+  .res-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: .3rem; }
+  .res-val { font-family: 'Space Mono', monospace; font-size: .9375rem; font-weight: 700; }
+  .res-val.big { font-size: 1.25rem; color: var(--green); }
+  .res-divider { height: 1px; background: var(--border); margin: 1rem 0; }
+  .res-num { font-size: .8125rem; color: var(--muted); }
+  .res-num span { font-family: 'Space Mono', monospace; color: var(--text); }
+
+  /* CARD INFO */
+  .info-card {
+    background: var(--s1); border: 1px solid var(--border2);
+    border-radius: 14px; padding: 1.25rem; margin-bottom: .75rem;
+  }
+  .info-title { font-size: .875rem; font-weight: 700; margin-bottom: .5rem; display: flex; align-items: center; gap: .5rem; }
+  .info-body { font-size: .8438rem; color: var(--muted); line-height: 1.6; }
+  .info-body strong { color: var(--text); }
+  .info-body a { color: var(--blue); text-decoration: none; }
+  .info-body a:hover { text-decoration: underline; }
+
+  /* STEPS */
+  .steps { display: flex; flex-direction: column; gap: .6rem; }
+  .step {
+    display: flex; gap: .85rem; align-items: flex-start;
+    background: var(--s1); border: 1px solid var(--border);
+    border-radius: 12px; padding: .9rem 1.1rem;
+  }
+  .step-num {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--purple-dim); color: var(--purple);
+    display: flex; align-items: center; justify-content: center;
+    font-size: .75rem; font-weight: 700; flex-shrink: 0;
+    font-family: 'Space Mono', monospace;
+  }
+  .step-text { font-size: .8438rem; line-height: 1.5; padding-top: 2px; }
+  .step-text strong { color: var(--text); }
+
+  /* TIPS */
+  .tip {
+    background: rgba(251,191,36,.06); border: 1px solid rgba(251,191,36,.25);
+    border-radius: 12px; padding: 1rem 1.1rem;
+    font-size: .8438rem; line-height: 1.6; margin-bottom: .6rem;
+    display: flex; gap: .6rem;
+  }
+  .tip-icon { flex-shrink: 0; }
+
+  /* GALLERY */
+  .gallery-note {
+    background: var(--s1); border: 1px solid var(--border2);
+    border-radius: 14px; padding: 1.25rem;
+    font-size: .8438rem; color: var(--muted); line-height: 1.6;
+  }
+  .gallery-links { display: flex; flex-direction: column; gap: .5rem; margin-top: .85rem; }
+  .gallery-link {
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--s2); border-radius: 8px; padding: .7rem 1rem;
+    text-decoration: none; color: var(--text); font-size: .8125rem;
+    border: 1px solid var(--border2); transition: border-color .2s;
+  }
+  .gallery-link:hover { border-color: var(--blue); }
+  .gallery-link .arrow { color: var(--blue); }
+
+  /* BREAKFAST */
+  .bf-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .6rem; margin-top: .85rem; }
+  .bf-stat { background: var(--s2); border-radius: 10px; padding: .75rem; text-align: center; }
+  .bf-stat .bv { font-family: 'Space Mono', monospace; font-size: .875rem; font-weight: 700; color: var(--gold); }
+  .bf-stat .bl { font-size: 10px; color: var(--muted); margin-top: 3px; }
+
+  @media (max-width: 500px) {
+    .res-grid { grid-template-columns: 1fr; }
+    .header-title { font-size: 1.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="back-link">← voltar pro roteiro</a>
+    <div class="header-tag">Noite 1 · 05/set</div>
+    <div class="header-title">🏨 The Royal Park Hotel Tokyo Haneda</div>
+    <div class="header-sub">Conectado direto ao Terminal 3 — sua chegada</div>
+  </div>
+</header>
+
+<main class="main">
+
+  <!-- RESERVA -->
+  <div class="section">
+    <div class="section-label">Sua reserva</div>
+    <div class="res-card">
+      <div class="res-grid">
+        <div class="res-item">
+          <div class="res-label">Check-in</div>
+          <div class="res-val">05/09/2026 · chegada ~23:00</div>
+        </div>
+        <div class="res-item">
+          <div class="res-label">Check-out</div>
+          <div class="res-val">06/09/2026 · até 11:00</div>
+        </div>
+        <div class="res-item">
+          <div class="res-label">Quarto</div>
+          <div class="res-val">Premium Comfort Single (não-fumante)</div>
+        </div>
+        <div class="res-item">
+          <div class="res-label">Plano</div>
+          <div class="res-val">Bed & Breakfast — Premium Floor</div>
+        </div>
+      </div>
+      <div class="res-divider"></div>
+      <div class="res-grid">
+        <div class="res-item">
+          <div class="res-label">Valor pago no hotel</div>
+          <div class="res-val big">¥29.600</div>
+        </div>
+        <div class="res-item">
+          <div class="res-label">≈ em reais</div>
+          <div class="res-val big" style="color:var(--blue)">R$ 1.015</div>
+        </div>
+      </div>
+      <div class="res-divider"></div>
+      <div class="res-num">Nº da reserva: <span>20260905-44031</span> · Pagamento: <span>no hotel (check-in)</span></div>
+    </div>
+
+    <div class="tip">
+      <span class="tip-icon">💡</span>
+      <span>Taxa de hospedagem (accommodation tax) de <strong>¥200</strong> é cobrada à parte, no check-in. Café da manhã já está incluso no seu plano — não paga os ¥3.200 do buffet avulso.</span>
+    </div>
+  </div>
+
+  <!-- COMO CHEGAR -->
+  <div class="section">
+    <div class="section-label">Como chegar do desembarque até o hotel</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">Desembarque no <strong>Terminal 3</strong> (todos os voos internacionais da Emirates chegam aqui) — passe por imigração e alfândega.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">Depois da coleta de bagagem, siga as placas para o <strong>saguão de partidas (Departure Lobby), 3º andar</strong>.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">A entrada do hotel fica logo após o balcão de check-in <strong>[N]</strong> no saguão de partidas — não precisa sair do prédio nem pegar shuttle.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-text">Recepção 24h — mostre a reserva (nº 20260905-44031) ou o e-mail de confirmação.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAFÉ DA MANHÃ -->
+  <div class="section">
+    <div class="section-label">Café da manhã — Restaurant & Bar TAILWIND</div>
+    <div class="info-card">
+      <div class="info-title">🍳 Buffet japonês-ocidental</div>
+      <div class="info-body">
+        Fica no <strong>4º andar</strong>. Buffet com miso soup, pratos japoneses e ocidentais, saladas, ovos, carnes, pães, cereais, frutas e sobremesas — bom pra "recarregar" antes de seguir viagem.
+      </div>
+      <div class="bf-grid">
+        <div class="bf-stat"><div class="bv">6:00–10:00</div><div class="bl">horário</div></div>
+        <div class="bf-stat"><div class="bv">4º andar</div><div class="bl">localização</div></div>
+        <div class="bf-stat"><div class="bv">Incluso</div><div class="bl">no seu plano</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DICAS -->
+  <div class="section">
+    <div class="section-label">Dicas práticas</div>
+    <div class="tip">
+      <span class="tip-icon">🧳</span>
+      <span>O quarto tem <strong>espaço de armazenamento de bagagem, frigobar, cofre e chaleira elétrica</strong> — dá pra deixar tudo organizado antes de sair explorando Tóquio no dia seguinte.</span>
+    </div>
+    <div class="tip">
+      <span class="tip-icon">🚿</span>
+      <span>Banheiro com <strong>banheira + chuveiro</strong> — bom pra relaxar depois de 33h de viagem.</span>
+    </div>
+    <div class="tip">
+      <span class="tip-icon">🔭</span>
+      <span>O deck de observação do Terminal 3 fica a <strong>2 minutos a pé</strong> — se não estiver morto de cansaço, vale espiar os aviões à noite.</span>
+    </div>
+    <div class="tip">
+      <span class="tip-icon">🚉</span>
+      <span>Pra seguir a Asakusa/Kuramae no dia 06: <strong>Keikyu Line direto de Haneda</strong>, ~35 min até Asakusa, sem baldeação complicada.</span>
+    </div>
+  </div>
+
+  <!-- FOTOS -->
+  <div class="section">
+    <div class="section-label">Fotos do quarto e do hotel</div>
+    <div class="gallery-note">
+      Álbuns com fotos reais de hóspedes (quarto, banheiro, lobby e restaurante):
+      <div class="gallery-links">
+        <a class="gallery-link" href="https://www.tripadvisor.com/Hotel_Review-g1066454-d6777496-Reviews-The_Royal_Park_Hotel_Tokyo_Haneda-Ota_Tokyo_Tokyo_Prefecture_Kanto.html" target="_blank">
+          <span>📷 Tripadvisor — fotos de hóspedes</span>
+          <span class="arrow">→</span>
+        </a>
+        <a class="gallery-link" href="https://www.booking.com/hotel/jp/royal-park-the-haneda.html" target="_blank">
+          <span>📷 Booking.com — galeria completa</span>
+          <span class="arrow">→</span>
+        </a>
+        <a class="gallery-link" href="https://www.oyster.com/tokyo/hotels/royal-park-hotel-the-haneda/photos/" target="_blank">
+          <span>📷 Oyster.com — fotos profissionais</span>
+          <span class="arrow">→</span>
+        </a>
+        <a class="gallery-link" href="https://www.royalparkhotels.co.jp/en/the/tokyohaneda/room/" target="_blank">
+          <span>🏨 Site oficial — quartos</span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CANCELAMENTO -->
+  <div class="section">
+    <div class="section-label">Política de cancelamento</div>
+    <div class="info-card">
+      <div class="info-body">
+        <strong>Mais de 8 dias antes (até ~28/ago):</strong> sem custo<br>
+        <strong>7–2 dias antes:</strong> 40% de multa<br>
+        <strong>1 dia antes:</strong> 80% de multa<br>
+        <strong>No dia:</strong> 100%<br><br>
+        Pra alterar ou cancelar: <a href="https://rsv.ihonex.com/cgi-bin/ihonex3/cancel.cgi?hid=rphs_thehaneda&form=en" target="_blank">link de gestão da reserva</a>
+      </div>
+    </div>
+  </div>
+
+</main>
+</body>
+</html>
